@@ -8,6 +8,14 @@ const sortArray = (unsorted, sorted) => {
     //  for each item creat a timeout
     //    in the timeout callback, push the item into `sorted`
     //    the timeout should delay for item.charCodeAt()
+    unsorted.forEach(item => {
+        // Create a timeout for each item
+      setTimeout(() => {
+            // Push the item into `sorted`
+          sorted.push(item);
+      }, item.charCodeAt());
+    });
+
 };
 
 // can you figure out why the tests pass in the order they do?

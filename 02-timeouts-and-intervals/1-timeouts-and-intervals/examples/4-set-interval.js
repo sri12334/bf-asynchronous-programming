@@ -13,15 +13,22 @@ const { log } = labeledLogger();
 const callback1 = () => {
     log('hello from interval 1');
 };
-setInterval(callback1, 500);
 
-log('scheduled interval 1');
+
+setInterval(callback1, 500); // 
+
+
+
+log('scheduled interval 1'); // 1
 
 const callback2 = () => {
     log('bonjour from interval 2');
 };
+
+
 setInterval(callback2, 1000);
 
-log('scheduled interval 2');
 
-log('= = = =  the call stack is empty  = = = =');
+log('scheduled interval 2'); // 2
+
+log('= = = =  the call stack is empty  = = = ='); // 3
