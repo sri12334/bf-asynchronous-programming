@@ -8,7 +8,11 @@ const { log, error } = labeledLogger();
 // --- declare some callbacks ---
 
 const createSummary = (user) => {
-    // write me!
+    return {
+        name: user.name,
+        city: user.address.city,
+        companyName: user.company.name
+    };
 };
 
 const handleError = (err) => error(err);
@@ -16,31 +20,33 @@ const handleError = (err) => error(err);
 // --- use the callbacks ---
 
 log('fetching and processing user 5');
-/*  {
-      name: 'Chelsey Dietrich',
-      city: 'Roscoeview',
-      companyName: 'Keebler LLC'
-    } */
-__;
+fetchUserById(5)
+    .then((user) => createSummary(user))
+    .then((summary) => log(summary))
+    .catch(handleError);
 
 log('fetching and processing user 1');
-/*  {
-      name: 'Leanne Graham',
-      city: 'Gwenborough',
-      companyName: 'Romaguera-Crona',
-    } */
-__;
+fetchUserById(1)
+    .then(createSummary)
+    .then((summary) => log(summary))
+    .catch(handleError);
 
 log('fetching and processing user 10');
-/*  {
-      name: 'Clementina DuBuque',
-      city: 'Lebsackbury',
-      companyName: 'Hoeger LLC',
-    } */
-__;
+fetchUserById(10)
+    .then(createSummary)
+    .then((summary) => log(summary))
+    .catch(handleError);
 
 log('fetching and processing user -1');
-// 404
-__;
+fetchUserById(-1)
+    .then((user) => createSummary(user))
+    .then((summary) => log(summary))
+    .catch((err) => {
+        if (err === 404) {
+            log('404: User not found');
+        } else {
+            error(err);
+        }
+    });
 
 log('= = = =  the call stack is empty  = = = =');

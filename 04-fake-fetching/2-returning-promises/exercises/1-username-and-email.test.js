@@ -7,9 +7,17 @@ const { log } = labeledLogger();
 // --- declare function ---
 
 /**
- *
+ * Returns a promise that resolves to a user's username and email.
+ * @param {number} id - The ID of the user to fetch.
+ * @returns {Promise<string>} A promise that resolves to the user's username and email.
  */
-const usernameAndEmail = () => {};
+const usernameAndEmail = (id) => {
+    return fetchUserById(id)
+    .then((user) => `${user.id}. ${user.name}, ${user.email}`)
+    .catch((err) => {
+        throw new Error(err);
+    });
+};
 
 // --- test function ---
 

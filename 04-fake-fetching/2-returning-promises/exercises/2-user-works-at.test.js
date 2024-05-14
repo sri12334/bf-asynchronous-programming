@@ -7,9 +7,20 @@ const { log } = labeledLogger();
 // --- declare function ---
 
 /**
- *
+ * Checks if a user works at a specific company.
+ * @param {number} userId - The ID of the user to check.
+ * @param {string} companyName - The name of the company to check.
+ * @returns {Promise<boolean>} A promise that resolves to true if the user works at the specified company, otherwise false.
  */
-const userWorksAt = () => {};
+const userWorksAt = (userId, companyName) => {
+    return fetchUserById(userId)
+    .then((user) => {
+        return user.company.name === companyName;
+    })
+    .catch((err) => {
+        throw new Error(err);
+    });
+};
 
 // --- test function ---
 
